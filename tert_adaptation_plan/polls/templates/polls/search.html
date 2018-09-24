@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--{% load watson %}-->
+</head>
+<body>
+
+    <form action="{% url 'watson:search' %}">
+        <input name="q" value="{{request.GET.q}}">
+        <input type="submit" value="Go">
+    </form>
+
+</body>
+</html>

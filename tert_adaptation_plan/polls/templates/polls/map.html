@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Карта</title>
+    {% load staticfiles %}
+
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <link href="{% static 'node_modules/ol/ol.css' %}" rel="stylesheet" />
+
+    <script data-main="{% static 'js/app.js' %}" src="{% static 'node_modules/requirejs/require.js' %}"></script>
+    <script data-main="{% static 'js/init.js' %}" src="{% static 'node_modules/requirejs/require.js' %}"></script>
+    
+</head>
+<body>
+    <div id="map"></div>
+    <div id="app"></div>
+</body>
+</html>
