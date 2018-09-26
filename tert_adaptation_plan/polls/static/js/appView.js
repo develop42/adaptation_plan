@@ -7,33 +7,26 @@ define(['appView'], function(appView) {
         template: _.template('Hello World'),
 
     });
-
     const root = new Root();
     root.render();
     $('#app').html(root.$el);
+
+
+    const Logo = Marionette.ItemView.extend({
+		template: _.template($('#logo').html()),
+	});
+	const logo = new Logo();
+	logo.render();
+	$('#logo').html(logo.$el);
+
+	const Form = Marionette.ItemView.extend({
+		template: _.template($('#form').html()),
+	});
+	const form = new Form();
+	form.render();
+	$('#form').html(form.$el);
 
 })
 
 
 
-
-
-
-
-
-
-// var Mn = require ( ['backbone.marionette'], );
-//SearchView = Backbone.View.extend({
-//    initialize: function() {
-//        alert('Initialized!');
-//    },
-//    events: {
-//        'click input[type=button]': 'doSearch'
-//    },
-//    render: function() {
-//        var template = _.template($('#search_template').html(), {});
-//        this.$el.html(template);
-//        return this;
-//    }
-//});
-//var searchView = new SearchView({ el: $('#search_container') });
