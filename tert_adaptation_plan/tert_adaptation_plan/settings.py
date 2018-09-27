@@ -145,7 +145,7 @@ REST_FRAMEWORK = {
     ]
 }
 
-try:
-    from .settings_instance import *
-except ObjectDoesNotExist:
-    pass
+# try:
+#     from .settings_instance import *
+# except ObjectDoesNotExist:
+#     pass
