@@ -9,4 +9,5 @@ class PollsConfig(AppConfig):
     def ready(self):
         Question = self.get_model("Question")
         Choice = self.get_model("Choice")
-        # watson.register(Question, Choice)
+        watson.register(Question)
+        watson.register(Choice)

@@ -1,12 +1,6 @@
 define(['appView'], function(appView) {
 
-    const Root = Marionette.ItemView.extend({
-
-        tagName: 'h1',
-        className: 'h3',
-        template: _.template('Hello World'),
-
-    });
+    const Root = Marionette.ItemView.extend();
     const root = new Root();
     root.render();
     $('#app').html(root.$el);

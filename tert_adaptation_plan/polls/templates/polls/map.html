@@ -14,18 +14,40 @@
 </head>
 <body>
     <div id="map"></div>
-    <div id="app"></div>
-    <div id="logo"></div>
-    <div id="form">
-        <input type="text">
-        <button>Поиск</button>
+    
+    <div id="app"><h1>Hello World</h1>
+        <div id="logo"></div>
     </div>
+    
+    <div id="form">
+        <form action="{% url 'polls:map' %}" method="post">
+            {% csrf_token %}
+            {{ form.input }}
+            <input type="submit" value="Поиск" >
+        </form>
+    </div>
+    
+    
     <div class="list">
         <script id="script_list" type="text/template">
             <%= question_list %>
             <%= question_list.question_text %>
             <%= question_text %>
         </script>
+        
+        <h1>Search results{% if query %} for &ldquo;{{query}}&rdquo;{% endif %}</h1>
+        {% load watson %}
+        {% if search_results %}
+            {% search_results search_results %}
+        {% else %}
+            {% if query %}
+                <p><em>There are no results to display.</em></p>
+                <p><em>Try entering a less specific search term.</em></p>
+            {% else %}
+                <p><em>Please enter a query in the search form.</em></p>
+            {% endif %}
+        {% endif %}
+        
     </div>
 </body>
 </html>

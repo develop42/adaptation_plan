@@ -9,13 +9,13 @@ define(['map'], function(map) {
     map.addLayer(osmLayer);
 
     var view = new ol.View({
-        center: [ 4188426.7147939987, 7508764.236877314 ],
-        zoom: 12,
+        center: ol.proj.fromLonLat([39.718705, 47.222531]),
+        zoom: 13,
     });
     map.setView(view);
 
     var zoomToExtentControl = new ol.control.ZoomToExtent({
-		extent: [4178426.79147939987, 7498764.237877314, 4198426.7147939987, 7518764.236877314 ],
+		extent: [4411466.02, 5968472.74, 4431466.02, 5988472.74,],
     });
 
     var osm_default = new ol.layer.Tile({

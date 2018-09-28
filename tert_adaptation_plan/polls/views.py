@@ -4,6 +4,7 @@ from .models import Question
 from rest_framework import generics, permissions
 from .serializers import QuestionSerializer, LocationSerializer
 from watson import search as watson
+from .forms import Form
 from django.http import Http404
 
 
@@ -41,15 +42,21 @@ class QuestionList (generics.ListCreateAPIView):
 
 
 def map(request):
-    question = Question.objects.all()
-    return render(request, 'polls/map.html', {'question': question})
+    # question = Question.objects.all()
+    form = Form(request.POST)
+    if request.method == 'POST':
+        form = Form(request.POST)
+        if form.is_valid():
+            query = request.POST.get('input')
+            search_results = watson.search(query)
+            return render(request, 'polls/map.html', {'form': form, 'search_results': search_results, 'query': query})
+        else:
+            form = Form()
+    return render(request, 'polls/map.html', {'form': form})
+
 
 
 def searchModel(request):
-    # search_results = watson.search("What's up?")
-    #
-    # for result in search_results:
-    #     print(result.title, result.url)
     return render(request, 'polls/search.html', )
 
 
