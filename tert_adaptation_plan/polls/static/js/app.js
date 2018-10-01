@@ -1,5 +1,5 @@
 requirejs(['../node_modules/jquery/dist/jquery',
-            '../node_modules/ol/ol',
+            '../ol/ol',
             'map',
             '../node_modules/json2/lib/JSON2/static/json2',
             '../node_modules/underscore/underscore',

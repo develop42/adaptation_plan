@@ -4,7 +4,7 @@ requirejs.config({
 
     paths: {
         jquery: 'node_modules/jquery/dist/jquery',
-        ol: 'node_modules/ol/ol',
+        ol: 'ol/ol',
         map: 'js/map',
         json: 'node_modules/json2/lib/JSON2/static/json2',
         underscore: 'node_modules/underscore/underscore',
