@@ -32,4 +32,11 @@ define(['map'], function(map) {
         }
     });
     map.removeControl(attributionControl);
-})
+
+
+
+
+
+
+});
+
