@@ -41,7 +41,14 @@ define(['map'], function(map) {
     });
     map.removeControl(attributionControl);
 
-
+    var mousePosition = new ol.control.MousePosition({
+        className: 'mouse-position',
+        target: 'map',
+		projection: 'EPSG:4326',
+		coordinateFormat: ol.coordinate.createStringXY(4),
+		undefinedHTML: 'Пока не доступно',
+    });
+    map.addControl(mousePosition);
 
 
 

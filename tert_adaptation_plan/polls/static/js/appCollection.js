@@ -22,4 +22,14 @@ define(['appCollection'], function(appCollection) {
         }
     });
 
+    var ClickView = Backbone.Collection.extend({
+        events:{
+            "click #submit-btn": "search",
+        },
+		search: function(event){
+			event.preventDefault();
+		}
+    });
+    var clickView = new ClickView();
+
 });

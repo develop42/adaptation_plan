@@ -23,7 +23,7 @@
         <form action="{% url 'polls:map' %}" method="post">
             {% csrf_token %}
             {{ form.input }}
-            <input type="submit" value="Поиск" >
+            <input type="submit" value="Поиск" id="search">
         </form>
     </div>
     
