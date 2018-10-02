@@ -16,7 +16,15 @@ define(['map'], function(map) {
 
     var zoomToExtentControl = new ol.control.ZoomToExtent({
 		extent: [4411466.02, 5968472.74, 4431466.02, 5988472.74,],
+		tipLabel: 'Начальный экстент',
+		label: '',
     });
+
+    var zoom = new ol.control.Zoom({
+        zoomInTipLabel : 'Приблизить',
+        zoomOutTipLabel : 'Отдалить',
+    })
+    map.addControl(zoom);
 
     var osm_default = new ol.layer.Tile({
         source: new ol.source.OSM()

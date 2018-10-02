@@ -35,16 +35,16 @@
             <%= question_text %>
         </script>
         
-        <h1>Search results{% if query %} for &ldquo;{{query}}&rdquo;{% endif %}</h1>
+        <h1>Результаты поиска{% if query %} для &ldquo;{{query}}&rdquo;{% endif %}</h1>
         {% load watson %}
         {% if search_results %}
             {% search_results search_results %}
         {% else %}
             {% if query %}
-                <p><em>There are no results to display.</em></p>
-                <p><em>Try entering a less specific search term.</em></p>
+                <p><em>Нет результатов для отображения.</em></p>
+                <p><em>Попробуйте ввести менее конкретный поисковый запрос.</em></p>
             {% else %}
-                <p><em>Please enter a query in the search form.</em></p>
+                <p><em>Введите запрос в форме поиска.</em></p>
             {% endif %}
         {% endif %}
         
