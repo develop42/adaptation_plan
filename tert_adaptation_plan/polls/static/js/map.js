@@ -51,7 +51,4 @@ define(['map'], function(map) {
     map.addControl(mousePosition);
 
 
-
-
 });
-

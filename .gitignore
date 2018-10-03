@@ -10,6 +10,7 @@ tert_adaptation_plan/tert_adaptation_plan/settings_instance.py
 
 #client libraries
 tert_adaptation_plan/polls/static/node_modules
+tert_adaptation_plan/polls/static/node_modules2
 
 #KDE
 .directory
