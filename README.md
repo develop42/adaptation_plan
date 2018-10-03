@@ -1,3 +1,9 @@
 # adaptation_plan
 
-# Обновить стили - gulp-sass
+# Установить библиотеки:
+pip install -r requiremenets.txt
+# в папке static
+npm install
+
+# Обновить стили:
+gulp-sass

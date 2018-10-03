@@ -20,10 +20,10 @@
     </div>
     
     <div id="form">
-        <form action="{% url 'polls:map' %}" method="post">
+        <form action="{% url 'polls:map' %}" method="post" id="search">
             {% csrf_token %}
             {{ form.input }}
-            <input type="submit" value="Поиск" id="search">
+            <input type="submit" value="Поиск" >
         </form>
     </div>
     

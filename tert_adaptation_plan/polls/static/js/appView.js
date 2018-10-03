@@ -20,7 +20,14 @@ define(['appView'], function(appView) {
 	form.render();
 	$('#form').html(form.$el);
 
+	const SearchView = Marionette.ItemView.extend({
+		events:{
+			"submit": "submit",
+		},
+		submit: function(event){
+			event.preventDefault();
+			var text_search = $(event.currentTarget).find('input[type=text]').val();
+		}
+	});
+
 })
-
-
-
