@@ -1,8 +1,8 @@
 define(['map'], function(map) {
-   'use strict;'
+   'use strict';
 
     var map = new ol.Map({target: 'map'});
-
+    debugger
     var osmLayer = new ol.layer.Tile({
         source: new ol.source.OSM()
     });
@@ -34,7 +34,6 @@ define(['map'], function(map) {
     var controls = map.getControls();
     var attributionControl;
     controls.forEach(function (el) {
-        console.log(el instanceof ol.control.Attribution);
         if (el instanceof ol.control.Attribution) {
           attributionControl = el;
         }

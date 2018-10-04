@@ -4,6 +4,11 @@ tert_adaptation_plan/datadump.json
 #python
 tert_adaptation_plan/polls/__pycache__
 tert_adaptation_plan/tert_adaptation_plan/__pycache__
+tert_adaptation_plan/polls/migrations/__pycache__/0001_initial.cpython-37.pyc
+tert_adaptation_plan/polls/migrations/__pycache__/0002_auto_20180921_1334.cpython-37.pyc
+tert_adaptation_plan/polls/migrations/__pycache__/0003_question_topic.cpython-37.pyc
+tert_adaptation_plan/polls/migrations/__pycache__/0004_auto_20180921_1431.cpython-37.pyc
+tert_adaptation_plan/polls/migrations/__pycache__/__init__.cpython-37.pyc
 
 #local settings
 tert_adaptation_plan/tert_adaptation_plan/settings_instance.py

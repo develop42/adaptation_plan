@@ -1,4 +1,6 @@
-define(['appCollection'], function(appCollection) {
+define(['appCollection', 'backbone', 'marionette'],
+function(appCollection, backbone, marionette) {
+'use strict';
 
     var Question = Backbone.Model.extend({
         url: '/polls/geopoint/',
@@ -12,26 +14,26 @@ define(['appCollection'], function(appCollection) {
     var question_list = new QuestionList();
     question_list.fetch();
 
-    const ListQuestion = Marionette.ItemView.extend({
-        tagName: 'div',
-        className: 'list',
-        template: _.template($('script_list').html()),
-        render: function(){
-            this.$el.html(this.template(this.model.toJSON()));
-            return this;
-        }
-    });
+//    var ListQuestion = Marionette.ItemView.extend({
+//        tagName: 'div',
+//        className: 'list',
+//        template: _.template($('script_list').html()),
+//        render: function(){
+//            this.$el.html(this.template(this.model.toJSON()));
+//            return this;
+//        }
+//    });
 
     var ClickView = Backbone.View.extend({
         events:{
-            "submit": "submit",
+            "click .submit": "submit",
         },
 		submit: function(event){
 			event.preventDefault();
 		}
     });
-    var clickView = new ClickView();
+    debugger
 
-
+//    var clickView = new ClickView();
 
 });

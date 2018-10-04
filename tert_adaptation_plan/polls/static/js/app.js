@@ -7,21 +7,26 @@ requirejs(['../node_modules/jquery/dist/jquery',
             '../node_modules/backbone.radio/build/backbone.radio',
             '../node_modules/backbone.marionette/lib/backbone.marionette',
             'appView',
-            'appModel',
-            'appCollection',
+            'application',
+//            'appModel',
+//            'appCollection',
             ],
 
-function($, ol, map,
+function($,
+		 ol,
+		 map,
          json,
          underscore,
          backbone,
          radio,
          marionette,
          appView,
-         appModel,
-         appCollection,
+         Application,
+//         appModel,
+//         appCollection,
          ){
-			$(document).ready(function() {
+			window.$(document).ready(function() {
+
 				var myApplication = new Application();
 				myApplication.init();
 			});

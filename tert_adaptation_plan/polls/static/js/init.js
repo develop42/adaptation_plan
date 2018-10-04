@@ -12,8 +12,9 @@ requirejs.config({
         radio: 'node_modules/backbone.radio/build/backbone.radio',
         marionette: 'node_modules/backbone.marionette/lib/backbone.marionette',
         appView: 'appView',
-        appModel: 'appModel',
-        appCollection: 'appCollection',
+
+//        appModel: 'appModel',
+//        appCollection: 'appCollection',
     },
     shim: {
         'underscore': {

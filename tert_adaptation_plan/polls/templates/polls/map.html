@@ -7,12 +7,15 @@
 
     <link href="{% static 'css/style.css' %}" rel="stylesheet" />
     <link href="{% static 'ol/ol.css' %}" rel="stylesheet" />
+    <link rel="import" href="/search_text.html">
 
     <script data-main="{% static 'js/app.js' %}" src="{% static 'node_modules/requirejs/require.js' %}"></script>
     <script data-main="{% static 'js/init.js' %}" src="{% static 'node_modules/requirejs/require.js' %}"></script>
+
     
 </head>
 <body>
+
     <div id="map"></div>
     
     <div id="app"><h1>Hello World</h1>
@@ -23,10 +26,16 @@
         <form action="{% url 'polls:map' %}" method="post" id="search">
             {% csrf_token %}
             {{ form.input }}
-            <input type="submit" value="Поиск" >
+            <input type="submit" value="Поиск" class="submit">
         </form>
     </div>
     
+    <!--<script>
+        var link = document.querySelector('link[rel="import"]');
+        var content = link.import;
+        var el = content.querySelector('#list');
+        document.body.appendChild(el.cloneNode(true));
+    </script>-->
     
     <div class="list">
         <script id="script_list" type="text/template">

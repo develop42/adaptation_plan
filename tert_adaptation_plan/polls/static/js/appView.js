@@ -1,33 +1,73 @@
-define(['appView'], function(appView) {
+define(['appView',
+		'../node_modules/underscore/underscore',
+		'backbone',
+        '../node_modules/backbone.marionette/lib/backbone.marionette',
+        '../node_modules/jquery/dist/jquery'
+        ],
+function(appView, underscore, backbone, marionette, jquery) {
+'use strict';
 
-    const Root = Marionette.ItemView.extend();
-    const root = new Root();
-    root.render();
-    $('#app').html(root.$el);
+
+	var Question = Backbone.Model.extend({
+        url: '/polls/geopoint/',
+    });
+
+    var QuestionList = Backbone.Collection.extend({
+        model: Question,
+        url: '/polls/geopoint/',
+    });
+
+    var question_list = new QuestionList();
+    question_list.fetch();
+
+/*        var ListQuestion = Marionette.ItemView.extend({
+        tagName: 'div',
+        className: 'list',
+        template: _.template($('script_list').html()),
+        render: function(){
+            this.$el.html(this.template(this.model.toJSON()));
+            return this;
+        }
+    });*/
+
+    var Head = Marionette.ItemView.extend({
+        template: _.template($('#app').html()),
+    });
+    var head = new Head();
+    head.render();
+    $('#app').html(head.$el);
 
 
-    const Logo = Marionette.ItemView.extend({
+    var Logo = Marionette.ItemView.extend({
 		template: _.template($('#logo').html()),
+
+		onRender: function(){
+		debugger
+		},
+
 	});
-	const logo = new Logo();
+	var logo = new Logo();
 	logo.render();
 	$('#logo').html(logo.$el);
 
-	const Form = Marionette.ItemView.extend({
+
+	var Form = Marionette.ItemView.extend({
 		template: _.template($('#form').html()),
+		events:{
+            "submit": "submit",
+        },
+		submit: function(event){
+			event.preventDefault();
+			var text = $(event.currentTarget).find('input[type=text]').val();
+
+		}
 	});
-	const form = new Form();
+	var form = new Form();
 	form.render();
 	$('#form').html(form.$el);
 
-	const SearchView = Marionette.ItemView.extend({
-		events:{
-			"submit": "submit",
-		},
-		submit: function(event){
-			event.preventDefault();
-			var text_search = $(event.currentTarget).find('input[type=text]').val();
-		}
-	});
 
-})
+debugger
+
+});
+

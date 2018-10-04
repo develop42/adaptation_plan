@@ -57,7 +57,7 @@ def map(request):
 
 
 def searchModel(request):
-    return render(request, 'polls/search.html', )
+    return render(request, 'polls/search_text.html', )
 
 
 class pointGeo(generics.ListCreateAPIView):
