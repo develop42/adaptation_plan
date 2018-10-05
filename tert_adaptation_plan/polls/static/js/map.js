@@ -2,7 +2,6 @@ define(['map'], function(map) {
    'use strict';
 
     var map = new ol.Map({target: 'map'});
-    debugger
     var osmLayer = new ol.layer.Tile({
         source: new ol.source.OSM()
     });
@@ -49,5 +48,10 @@ define(['map'], function(map) {
     });
     map.addControl(mousePosition);
 
+
+	var link = document.querySelector('link[rel="import"]');
+    var content = link.import;
+    var el = content.querySelector('#list');
+    document.body.appendChild(el.cloneNode(true));
 
 });

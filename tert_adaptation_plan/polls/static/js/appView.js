@@ -40,11 +40,6 @@ function(appView, underscore, backbone, marionette, jquery) {
 
     var Logo = Marionette.ItemView.extend({
 		template: _.template($('#logo').html()),
-
-		onRender: function(){
-		debugger
-		},
-
 	});
 	var logo = new Logo();
 	logo.render();
@@ -66,8 +61,6 @@ function(appView, underscore, backbone, marionette, jquery) {
 	form.render();
 	$('#form').html(form.$el);
 
-
-debugger
 
 });
 

@@ -15,6 +15,8 @@ urlpatterns = [
     path('quest/', QuestionList.as_view(), name='question_list'),
     path('map/', views.map, name='map'),
     path('search/', views.searchModel, name='search'),
-    path('geopoint/', pointGeo.as_view(), name='point')
+    path('geopoint/', pointGeo.as_view(), name='point'),
+    path('map/search_text.html/', views.searchModel, name='searchModel'),
+
 
 ]

@@ -1,10 +1,9 @@
 <div id="list">
-  dfgfgfgfgfgdfg
-        <!--<script id="script_list" type="text/template">-->
-            <!--<%= question_list %>-->
-            <!--<%= question_list.question_text %>-->
-            <!--<%= question_text %>-->
-        <!--</script>-->
+        <script id="script_list" type="text/template">
+            <%= question_list %>
+            <%= question_list.question_text %>
+            <%= question_text %>
+        </script>
         
   <h1>Результаты поиска{% if query %} для &ldquo;{{query}}&rdquo;{% endif %}</h1>
   {% load watson %}

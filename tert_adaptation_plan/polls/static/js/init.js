@@ -8,13 +8,11 @@ requirejs.config({
         map: 'js/map',
         json: 'node_modules/json2/lib/JSON2/static/json2',
         underscore: 'node_modules/underscore/underscore',
-        backbone: 'node_modules/backbone/backbone-min',
+        backbone: 'node_modules/backbone/backbone',
         radio: 'node_modules/backbone.radio/build/backbone.radio',
         marionette: 'node_modules/backbone.marionette/lib/backbone.marionette',
         appView: 'appView',
 
-//        appModel: 'appModel',
-//        appCollection: 'appCollection',
     },
     shim: {
         'underscore': {
@@ -31,4 +29,5 @@ requirejs.config({
         },
 
 	}
+
 });
