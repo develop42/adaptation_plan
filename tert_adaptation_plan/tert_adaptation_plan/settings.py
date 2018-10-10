@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'polls',
     'rest_framework',
     'django.contrib.gis',
-    'watson',
+    # 'watson',
     'rest_framework_gis',
 ]
 

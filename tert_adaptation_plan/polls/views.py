@@ -52,12 +52,21 @@ def map(request):
             return render(request, 'polls/map.html', {'form': form, 'search_results': search_results, 'query': query})
         else:
             form = Form()
-    return render(request, 'polls/map.html', {'form': form})
+    return render(request, 'polls/map.html', {'form': form,})
 
 
 
 def searchModel(request):
-    return render(request, 'polls/search_text.html', )
+    form = Form(request.POST)
+    if request.method == 'POST':
+        form = Form(request.POST)
+        if form.is_valid():
+            query = request.POST.get('input')
+            search_results = watson.search(query)
+            return render(request, 'polls/search_text.html', {'form': form, 'search_results': search_results, 'query': query})
+        else:
+            form = Form()
+    return render(request, 'polls/search_text.html',{'form': form})
 
 
 class pointGeo(generics.ListCreateAPIView):

@@ -1,7 +1,5 @@
 requirejs.config({
-
     baseUrl: 'static',
-
     paths: {
         jquery: 'node_modules/jquery/dist/jquery',
         ol: 'ol/ol',
@@ -12,8 +10,9 @@ requirejs.config({
         radio: 'node_modules/backbone.radio/build/backbone.radio',
         marionette: 'node_modules/backbone.marionette/lib/backbone.marionette',
         appView: 'appView',
-
+		search: 'search',
     },
+
     shim: {
         'underscore': {
             deps:["jquery"],
@@ -27,6 +26,7 @@ requirejs.config({
             deps: ['underscore', 'jquery'],
             exports: 'Backbone'
         },
+
 
 	}
 

@@ -7,6 +7,7 @@ requirejs(['../node_modules/jquery/dist/jquery',
             '../node_modules/backbone.radio/build/backbone.radio',
             '../node_modules/backbone.marionette/lib/backbone.marionette',
             'appView',
+            'search',
             ],
 
 function($,
@@ -17,7 +18,9 @@ function($,
          backbone,
          radio,
          marionette,
-         appView,){
+         appView,
+         search,
+         ){
 
 			window.$(document).ready(function() {
 				var Application = Marionette.Application.extend({
@@ -25,11 +28,14 @@ function($,
 				});
 
 				var myApplication = new Application();
+
                 myApplication.on('start', function() {
                     Backbone.history.start();
+
                 });
 
 				myApplication.start();
+
 			});
 		 }
 );

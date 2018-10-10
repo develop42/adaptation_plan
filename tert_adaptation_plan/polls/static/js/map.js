@@ -52,6 +52,7 @@ define(['map'], function(map) {
 	var link = document.querySelector('link[rel="import"]');
     var content = link.import;
     var el = content.querySelector('#list');
-    document.body.appendChild(el.cloneNode(true));
+    document.querySelector('#form').appendChild(el);
+
 
 });
