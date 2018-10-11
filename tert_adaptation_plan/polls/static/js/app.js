@@ -35,7 +35,7 @@ function($,
                 });
 
 				myApplication.start();
-
+				window.app = myApplication
 			});
 		 }
 );

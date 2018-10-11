@@ -1,14 +1,16 @@
 define(['search',
 		'../node_modules/backbone/backbone',
 		'../node_modules/backbone.marionette/lib/backbone.marionette',
-		'../ol/ol',
 		'map',
 		],
-	function(search, backbone, marionette, ol, map,
+	function(search, backbone, marionette, map,
 	){
+		'use strict';
+
 		var Question = Backbone.Model.extend({
             url: '/polls/geopoint/',
         });
+        ol
 
         var QuestionList = Backbone.Collection.extend({
             model: Question,
@@ -19,22 +21,35 @@ define(['search',
         var question_list = new QuestionList();
         question_list.fetch();
         question_list.on('sync', function(response){
-            debugger
-            var dataLayer = new ol.layer.Vector("My GeoJson data from server", {
-                projection: new ol.projection("EPSG:4326"),
+
+
+			var geojsonObject = response.models[0].attributes
+
+
+			var source = new ol.source.Vector({
+                features: (new ol.format.GeoJSON()).readFeatures(geojsonObject)
+			});
+
+			
+            var styleFunction = new ol.style.Style({
+                image : new ol.style.Icon(({
+                anchor : [ 0.5, 1 ],
+                src : '../img/logo.bmp'
+                }))
             });
-            var features = getFeatures("/polls/geopoint/");
-            dataLayer.addFeatures(features);
 
-			/*var markers = new ol.Layer.Markers("Markers");
-            map.addLayer(markers);
-            var size = new ol.Size(21,25);
-            var offset = new ol.Pixel(-(size.w/2), -size.h);
-            var icon = new ol.Icon('http://www.openlayers.org/dev/img/marker.png', size, offset);
-            markers.addMarker(new ol.Marker(new ol.LonLat(0,0),icon));
-            markers.addMarker(new ol.Marker(new ol.LonLat(0,0),icon.clone()));*/
+			var layer = new ol.layer.Vector({
+                source: source,
+                style: styleFunction
+			});
+//			app.map. = new ol.Map({layers: [layer]});
+			app.map.addLayer(layer);
 
-        })
+
+        });
+
+
+
 
         var ListQuestion = Marionette.ItemView.extend({
             tagName: 'div',
