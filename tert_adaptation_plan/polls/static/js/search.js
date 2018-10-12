@@ -10,7 +10,6 @@ define(['search',
 		var Question = Backbone.Model.extend({
             url: '/polls/geopoint/',
         });
-        ol
 
         var QuestionList = Backbone.Collection.extend({
             model: Question,
@@ -23,37 +22,12 @@ define(['search',
         question_list.on('sync', function(response){
 
 
-			var geojsonObject = response.models[0].attributes
-
-
-			var source = new ol.source.Vector({
-                features: (new ol.format.GeoJSON()).readFeatures(geojsonObject)
-			});
-
-			
-            var styleFunction = new ol.style.Style({
-                image : new ol.style.Icon(({
-                anchor : [ 0.5, 1 ],
-                src : '../img/logo.bmp'
-                }))
-            });
-
-			var layer = new ol.layer.Vector({
-                source: source,
-                style: styleFunction
-			});
-//			app.map. = new ol.Map({layers: [layer]});
-			app.map.addLayer(layer);
-
-
         });
-
-
 
 
         var ListQuestion = Marionette.ItemView.extend({
             tagName: 'div',
-            className: '.list',
+            className: 'list',
             template: _.template($('#script_list').html()),
             initialize: function(){
                 this.render();

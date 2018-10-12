@@ -6,4 +6,4 @@ pip install -r requiremenets.txt
 npm install
 
 # Обновить стили:
-gulp-sass
+gulp sass

@@ -19,3 +19,6 @@ tert_adaptation_plan/polls/static/node_modules2
 
 #KDE
 .directory
+
+#style
+tert_adaptation_plan/polls/static/css/build

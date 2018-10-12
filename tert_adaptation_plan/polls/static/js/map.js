@@ -1,11 +1,66 @@
-define(['map'], function(map) {
-   'use strict';
+define(['map',
+        '../node_modules/backbone/backbone',
+        '../node_modules/backbone.marionette/lib/backbone.marionette'],
+        function(map, backbone, marionette) {
+    'use strict';
 
     app.map = new ol.Map({target: 'map'});
+    window.map= app.map
+
+    var Question = Backbone.Model.extend({
+            url: '/polls/geopoint/',
+        });
+        ol
+
+    var QuestionList = Backbone.Collection.extend({
+        model: Question,
+        url: '/polls/geopoint/',
+    });
+
+    var question_list = new QuestionList();
+    question_list.fetch();
+    question_list.on('sync', function(response){
+
+		var geojsonObject = response.models[0].attributes
+
+        var format = new ol.format.GeoJSON({
+			featureProjection:"EPSG:4326",
+			dataProjection: 'EPSG: 4326'
+		});
+
+		var source = new ol.source.Vector({
+            features: format.readFeatures(geojsonObject),
+            format: new ol.format.GeoJSON()
+		});
+
+		var style = new ol.style.Style({
+            image: new ol.style.Circle({
+                radius: 46,
+                stroke: new ol.style.Stroke({
+                    color: 'red',
+                    width: 2
+                }),
+                fill: new ol.style.Fill({
+                    color: 'green'
+                })
+            })
+        });
+
+
+		var layer = new ol.layer.Vector({
+            source: source,
+            style: style,
+            format: new ol.format.GeoJSON()
+		});
+
+	});
+	app.map.addLayer(layer);
+
     var osmLayer = new ol.layer.Tile({
         source: new ol.source.OSM()
     });
     app.map.addLayer(osmLayer);
+
 
     var view = new ol.View({
         center: ol.proj.fromLonLat([39.718705, 47.222531]),
