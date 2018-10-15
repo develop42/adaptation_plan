@@ -52,9 +52,10 @@ define(['map',
             style: style,
             format: new ol.format.GeoJSON()
 		});
+		window.map.addLayer(layer);
 
 	});
-	app.map.addLayer(layer);
+
 
     var osmLayer = new ol.layer.Tile({
         source: new ol.source.OSM()
@@ -108,7 +109,6 @@ define(['map',
     var content = link.import;
     var el = content.querySelector('#list');
     document.querySelector('#form').appendChild(el);
-
 
 
 });
