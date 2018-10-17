@@ -1,8 +1,11 @@
+(function() {
+    'use strict';
+    debugger;
 requirejs.config({
     baseUrl: 'static',
     paths: {
-        jquery: 'node_modules/jquery/dist/jquery',
-        ol: 'ol/ol',
+        jquery: 'node_modules/jquery/dist/jquery.min',
+        ol: 'ol/ol-debug',
         map: 'js/map',
         json: 'node_modules/json2/lib/JSON2/static/json2',
         underscore: 'node_modules/underscore/underscore',
@@ -11,9 +14,13 @@ requirejs.config({
         marionette: 'node_modules/backbone.marionette/lib/backbone.marionette',
         appView: 'appView',
 		search: 'search',
+		app: 'app',
     },
 
     shim: {
+        'jquery': {
+            exports: '$'
+        },
         'underscore': {
             deps:["jquery"],
             exports: '_'
@@ -27,7 +34,20 @@ requirejs.config({
             exports: 'Backbone'
         },
 
-
 	}
 
+
+
 });
+define('jquery', [], function() {
+    return jQuery;
+});
+/*requirejs(['../../static/node_modules/jquery/dist/jquery', '../../static/js/app',], function($, app) {
+        window.$(document).ready(function() {
+            window.app.start();
+        });
+    })*/
+
+})()
+
+

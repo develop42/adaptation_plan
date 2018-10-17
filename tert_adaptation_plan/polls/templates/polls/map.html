@@ -9,13 +9,15 @@
     <link href="{% static 'ol/ol.css' %}" rel="stylesheet" />
         <link rel="import" href="search_text.html">
     
-    <script data-main="{% static 'js/app.js' %}" src="{% static 'node_modules/requirejs/require.js' %}"></script>
-    <script data-main="{% static 'js/init.js' %}" src="{% static 'node_modules/requirejs/require.js' %}"></script>
+    <script src="{% static 'node_modules/requirejs/require.js' %}" data-main="{% static 'js/app.js' %}"></script>
+    <script src="{% static 'node_modules/requirejs/require.js' %}" data-main="{% static 'js/init.js' %}"></script>
+    
     
 </head>
 <body>
-
-    <div id="map"></div>
+    
+    
+    <div id="map"><div id="popup"></div></div>
     
     <div id="app"><h1>Hello World</h1>
         
@@ -26,12 +28,14 @@
             <form action="{% url 'polls:map' %}" method="post" id="search">
                 {% csrf_token %}
                 {{ form.input }}
-                <input type="submit" value="Поиск" class="submit">
+                <input type="submit" value="Поиск" class="submit" id="btn" >
             </form>
         
         </div>
         
     </div>
+
+
 
 
 </body>

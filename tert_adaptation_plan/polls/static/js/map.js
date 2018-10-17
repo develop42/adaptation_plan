@@ -1,6 +1,8 @@
 define(['map',
+//		'../node_modules/jquery/dist/jquery',
         '../node_modules/backbone/backbone',
-        '../node_modules/backbone.marionette/lib/backbone.marionette'],
+        '../node_modules/backbone.marionette/lib/backbone.marionette',
+        ],
         function(map, backbone, marionette) {
     'use strict';
 
@@ -24,8 +26,9 @@ define(['map',
 		var geojsonObject = response.models[0].attributes
 
         var format = new ol.format.GeoJSON({
-			featureProjection:"EPSG:4326",
-			dataProjection: 'EPSG: 4326'
+//			dataProjection: 'EPSG: 3857',
+			featureProjection:"EPSG:3857",
+
 		});
 
 		var source = new ol.source.Vector({
@@ -35,16 +38,79 @@ define(['map',
 
 		var style = new ol.style.Style({
             image: new ol.style.Circle({
-                radius: 46,
+                radius: 6,
                 stroke: new ol.style.Stroke({
-                    color: 'red',
+                    color: [10, 33, 203],
                     width: 2
                 }),
                 fill: new ol.style.Fill({
-                    color: 'green'
+                    color: [74, 94, 252],
                 })
             })
         });
+
+        var iconFeature = new ol.Feature({
+            geometry: new ol.geom.Point([0, 0]),
+            name: 'Null Island',
+            population: 4000,
+            rainfall: 500
+		});
+		iconFeature.setStyle(style);
+
+		var element = document.getElementById('popup');
+
+		var popup = new ol.Overlay({
+            element: element,
+            positioning: 'bottom-center',
+            stopEvent: false
+		});
+		window.map.addOverlay(popup);
+
+		// display popup on click
+
+		window.map.on('click', function(evt) {
+            var feature = window.map.forEachFeatureAtPixel(evt.pixel,
+            function(feature, layer) {
+                return feature;
+            });
+            if (feature) {
+                var geometry = feature.getGeometry();
+                var coord = geometry.getCoordinates();
+                popup.setPosition(coord);
+                /*$("#popup").click(function(){
+                    console.log("button");
+                });*/
+
+                window.$ = jQuery.noConflict();
+
+                window.$(element).popover({
+                    'placement': 'top',
+                    'html': true,
+                    'content': feature.get('name')
+                });
+                $(element).popover('show');
+            } else {
+                $(element).popover('destroy');
+            }
+		});
+
+
+
+		var cursorHoverStyle = "pointer";
+		var target = window.map.getTarget();
+		var jTarget = typeof target === "string" ? window.$("#"+target) : window.$(target);
+		window.map.on("pointermove", function (event) {
+            var mouseCoordInMapPixels = [event.originalEvent.offsetX, event.originalEvent.offsetY];
+            var hit = window.map.forEachFeatureAtPixel(mouseCoordInMapPixels, function (feature, layer) {
+                return true;
+            });
+
+            if (hit) {
+                jTarget.css("cursor", cursorHoverStyle);
+            } else {
+                jTarget.css("cursor", "");
+            }
+		});
 
 
 		var layer = new ol.layer.Vector({
@@ -109,6 +175,8 @@ define(['map',
     var content = link.import;
     var el = content.querySelector('#list');
     document.querySelector('#form').appendChild(el);
+
+
 
 
 });

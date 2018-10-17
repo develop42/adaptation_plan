@@ -18,11 +18,6 @@ define(['search',
 
 
         var question_list = new QuestionList();
-        question_list.fetch();
-        question_list.on('sync', function(response){
-
-
-        });
 
 
         var ListQuestion = Marionette.ItemView.extend({
@@ -40,17 +35,30 @@ define(['search',
         });
 
 		var Form = Marionette.ItemView.extend({
-		template: _.template($('#form').html()),
-		events:{
-            "submit": "submit",
-        },
-		submit: function(event){
-			event.preventDefault();
-			var text = $(event.currentTarget).find('input[type=text]').val();
-		}
+			template: _.template($('#form').html()),
+			events:{
+                "submit": "submit",
+            },
+			submit: function(event){
+				event.preventDefault();
+				question_list.fetch();
+                question_list.on('sync', function(response){
+					var geojsonObjects = response.models[0].attributes.features[0].properties.question_text;
+					document.getElementById("cont").innerHTML = geojsonObjects;
+
+                });
+            }
 		});
+
 		var form = new Form();
 		form.render();
 		$('#form').html(form.$el);
+
+        document.getElementById('btn').onclick = function(){
+            document.getElementById('list').style.display = "block";
+        }
+		document.getElementById('close').onclick = function() {
+		    document.getElementById('list').style.display = "none"
+        }
 
 	});
