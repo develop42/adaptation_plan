@@ -54,6 +54,7 @@ define(['search',
 		form.render();
 		$('#form').html(form.$el);
 
+
         document.getElementById('btn').onclick = function(){
             document.getElementById('list').style.display = "block";
         }

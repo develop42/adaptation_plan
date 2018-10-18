@@ -7,7 +7,9 @@
 
     <link href="{% static 'css/style.css' %}" rel="stylesheet" />
     <link href="{% static 'ol/ol.css' %}" rel="stylesheet" />
-        <link rel="import" href="search_text.html">
+    <link href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link href="{% static 'node_modules/bootstrap/dist/css/bootstrap-theme.min.css' %}">
+    <link rel="import" href="search_text.html">
     
     <script src="{% static 'node_modules/requirejs/require.js' %}" data-main="{% static 'js/app.js' %}"></script>
     <script src="{% static 'node_modules/requirejs/require.js' %}" data-main="{% static 'js/init.js' %}"></script>
@@ -17,7 +19,12 @@
 <body>
     
     
-    <div id="map"><div id="popup"></div></div>
+    <div id="map">
+        <div id="popup" class="ol-popup">
+            <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+        </div>
+        
+    </div>
     
     <div id="app"><h1>Hello World</h1>
         

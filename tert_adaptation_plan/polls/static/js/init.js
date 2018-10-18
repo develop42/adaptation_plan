@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    debugger;
+
 requirejs.config({
     baseUrl: 'static',
     paths: {
@@ -15,6 +15,7 @@ requirejs.config({
         appView: 'appView',
 		search: 'search',
 		app: 'app',
+		bootstrap: 'node_modules/dist/js/bootstrap',
     },
 
     shim: {

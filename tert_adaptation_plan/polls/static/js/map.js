@@ -1,9 +1,9 @@
 define(['map',
-//		'../node_modules/jquery/dist/jquery',
         '../node_modules/backbone/backbone',
         '../node_modules/backbone.marionette/lib/backbone.marionette',
+        '../../static/node_modules/bootstrap/dist/js/bootstrap',
         ],
-        function(map, backbone, marionette) {
+        function(map, backbone, marionette, bootstrap) {
     'use strict';
 
     app.map = new ol.Map({target: 'map'});
@@ -18,6 +18,7 @@ define(['map',
         model: Question,
         url: '/polls/geopoint/',
     });
+//================================================= Вывод на карту===================================================
 
     var question_list = new QuestionList();
     question_list.fetch();
@@ -26,9 +27,7 @@ define(['map',
 		var geojsonObject = response.models[0].attributes
 
         var format = new ol.format.GeoJSON({
-//			dataProjection: 'EPSG: 3857',
 			featureProjection:"EPSG:3857",
-
 		});
 
 		var source = new ol.source.Vector({
@@ -49,14 +48,6 @@ define(['map',
             })
         });
 
-        var iconFeature = new ol.Feature({
-            geometry: new ol.geom.Point([0, 0]),
-            name: 'Null Island',
-            population: 4000,
-            rainfall: 500
-		});
-		iconFeature.setStyle(style);
-
 		var element = document.getElementById('popup');
 
 		var popup = new ol.Overlay({
@@ -66,35 +57,46 @@ define(['map',
 		});
 		window.map.addOverlay(popup);
 
-		// display popup on click
+
+//======================================================popup при клике
 
 		window.map.on('click', function(evt) {
-            var feature = window.map.forEachFeatureAtPixel(evt.pixel,
+			var feature = window.map.forEachFeatureAtPixel(evt.pixel,
             function(feature, layer) {
                 return feature;
             });
-            if (feature) {
-                var geometry = feature.getGeometry();
-                var coord = geometry.getCoordinates();
-                popup.setPosition(coord);
-                /*$("#popup").click(function(){
-                    console.log("button");
-                });*/
+            var element = popup.getElement();
 
-                window.$ = jQuery.noConflict();
+//==================================================== кнопка закрыть
+			var closer = document.getElementById('popup-closer');
+            $(element).popover('destroy');
 
-                window.$(element).popover({
+			if (feature) {
+				var coordinate = feature.getGeometry().flatCoordinates;
+                var hdms = ol.coordinate.toStringXY(ol.proj.transform(
+                    coordinate, 'EPSG:3857', 'EPSG:4326'), 2);
+                popup.setPosition(coordinate);
+				closer.onclick = function() {
+                    popup.setPosition(undefined);
+                    closer.blur();
+                    return false;
+                };
+                $(element).popover({
                     'placement': 'top',
+                    'animation': false,
                     'html': true,
-                    'content': feature.get('name')
+					'content':  feature.getProperties().question_text + '<hr> Координаты: ' + hdms
                 });
-                $(element).popover('show');
-            } else {
+	            $(element).popover('show');
+	        }else {
                 $(element).popover('destroy');
+                popup.setPosition(undefined);
             }
+
 		});
 
 
+//=======================================================курсор pointer
 
 		var cursorHoverStyle = "pointer";
 		var target = window.map.getTarget();
@@ -112,15 +114,15 @@ define(['map',
             }
 		});
 
-
 		var layer = new ol.layer.Vector({
             source: source,
             style: style,
             format: new ol.format.GeoJSON()
 		});
 		window.map.addLayer(layer);
-
 	});
+
+//==========================================слои и элементы правления==============================================
 
 
     var osmLayer = new ol.layer.Tile({
@@ -140,26 +142,18 @@ define(['map',
 		tipLabel: 'Начальный экстент',
 		label: '',
     });
+	app.map.addControl(zoomToExtentControl);
 
     var zoom = new ol.control.Zoom({
         zoomInTipLabel : 'Приблизить',
         zoomOutTipLabel : 'Отдалить',
+//        className: 'zoom_map',
     })
     app.map.addControl(zoom);
 
     var osm_default = new ol.layer.Tile({
         source: new ol.source.OSM()
     });
-
-    app.map.addControl(zoomToExtentControl);
-    var controls = app.map.getControls();
-    var attributionControl;
-    controls.forEach(function (el) {
-        if (el instanceof ol.control.Attribution) {
-          attributionControl = el;
-        }
-    });
-    app.map.removeControl(attributionControl);
 
     var mousePosition = new ol.control.MousePosition({
         className: 'mouse-position',
@@ -175,8 +169,6 @@ define(['map',
     var content = link.import;
     var el = content.querySelector('#list');
     document.querySelector('#form').appendChild(el);
-
-
 
 
 });
