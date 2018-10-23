@@ -27,10 +27,7 @@
     <div id="app"><h1>Hello World</h1>
         <div id="logo"></div>
         
-        <div id="form"></div>
-        
-        <script id="script_form" type="text/html">
-
+        <div id="form">
             <div id="f">
                 <form action="{% url 'polls:map' %}" method="post" id="search">
                     {% csrf_token %}
@@ -39,9 +36,7 @@
                 </form>
             </div>
             
-        </script>
-        
-    </div>
+        </div>
 
 
 </body>

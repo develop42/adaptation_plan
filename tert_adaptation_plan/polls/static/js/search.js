@@ -23,8 +23,7 @@ define(['search',
 
 
 		var FormView = Marionette.LayoutView.extend({
-			el:'#form',
-			template: $('#script_form')[0].innerHTML,
+			template:'#form',
 			regions: {
 				form: '#f',
 			},
@@ -61,7 +60,7 @@ define(['search',
 			},
         });
 //        formView.form.show(new ResultView());
-        formView.getRegion('form').show(new ResultView());
+//        formView.getRegion('form').show(new ResultView());
 
 
 
