@@ -15,11 +15,12 @@ function(appView,
 
 
     var Head = Marionette.ItemView.extend({
-        template: _.template($('#app').html()),
+//        template: _.template($('#app').html()),
+		template: '#app',
     });
     var head = new Head();
     head.render();
-    $('#app').html(head.$el);
+//    $('#app').html(head.$el);
 
     var Logo = Marionette.ItemView.extend({
 		template: _.template($('#logo').html()),

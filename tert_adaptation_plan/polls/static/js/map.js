@@ -12,7 +12,6 @@ define(['map',
     var Question = Backbone.Model.extend({
             url: '/polls/geopoint/',
         });
-        ol
 
     var QuestionList = Backbone.Collection.extend({
         model: Question,
@@ -147,7 +146,6 @@ define(['map',
     var zoom = new ol.control.Zoom({
         zoomInTipLabel : 'Приблизить',
         zoomOutTipLabel : 'Отдалить',
-//        className: 'zoom_map',
     })
     app.map.addControl(zoom);
 
@@ -165,10 +163,12 @@ define(['map',
     app.map.addControl(mousePosition);
 
 
-	var link = document.querySelector('link[rel="import"]');
+	/*var link = document.querySelector('link[rel="import"]');
     var content = link.import;
     var el = content.querySelector('#list');
-    document.querySelector('#form').appendChild(el);
+    document.querySelector('#form').appendChild(el);*/
+
+
 
 
 });

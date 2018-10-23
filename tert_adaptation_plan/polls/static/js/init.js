@@ -15,7 +15,8 @@ requirejs.config({
         appView: 'appView',
 		search: 'search',
 		app: 'app',
-		bootstrap: 'node_modules/dist/js/bootstrap',
+		bootstrap: 'node_modules/bootstrap/dist/js/bootstrap',
+		text: 'node_modules/text/text',
     },
 
     shim: {

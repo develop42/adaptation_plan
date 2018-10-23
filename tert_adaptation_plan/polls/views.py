@@ -68,6 +68,19 @@ def searchModel(request):
             form = Form()
     return render(request, 'polls/search_text.html',{'form': form})
 
+def search(request):
+    form = Form(request.POST)
+    if request.method == 'POST':
+        form = Form(request.POST)
+        if form.is_valid():
+            query = request.POST.get('input')
+            search_results = watson.search(query)
+            return render(request, 'polls/search_text.html',
+                          {'form': form, 'search_results': search_results, 'query': query})
+        else:
+            form = Form()
+    return render(request, 'polls/search.html', {'form': form})
+
 
 class pointGeo(generics.ListCreateAPIView):
     serializer_class = LocationSerializer

@@ -1,16 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <!--{% load watson %}-->
-</head>
-<body>
+<div id="list">test</div>
+<script id="search_result" type="text/html">
 
-    <form action="{% url 'watson:search' %}">
-        <input name="q" value="{{request.GET.q}}">
-        <input type="submit" value="Go">
-    </form>
 
-</body>
-</html>
+    <div id="l" class="list">
+  
+        <div class="h1">
+            <div id="close"></div>
+            <h2>Результаты поиска{% if query %} для &ldquo;{{query}}&rdquo;{% endif %}</h2>
+        </div>
+    
+        <div class="content" id="cont">
+            {% if search_results %}
+                {{ search_results }}
+            {% else %}
+                {% if query %}
+                    <p><em>Нет результатов для отображения.</em></p>
+                    <p><em>Попробуйте ввести менее конкретный поисковый запрос.</em></p>
+                {% else %}
+                    <p><em>Введите запрос в форме поиска.</em></p>
+                {% endif %}
+            {% endif %}
+        </div>
+    
+    </div>
+
+
+</script>
