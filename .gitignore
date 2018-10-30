@@ -1,6 +1,3 @@
-#data
-tert_adaptation_plan/datadump.json
-
 #python
 tert_adaptation_plan/polls/__pycache__
 tert_adaptation_plan/tert_adaptation_plan/__pycache__

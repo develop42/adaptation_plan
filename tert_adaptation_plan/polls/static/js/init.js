@@ -12,7 +12,6 @@ requirejs.config({
         backbone: 'node_modules/backbone/backbone',
         radio: 'node_modules/backbone.radio/build/backbone.radio',
         marionette: 'node_modules/backbone.marionette/lib/backbone.marionette',
-        appView: 'appView',
 		search: 'search',
 		app: 'app',
 		bootstrap: 'node_modules/bootstrap/dist/js/bootstrap',
@@ -38,17 +37,7 @@ requirejs.config({
 
 	}
 
-
-
 });
-define('jquery', [], function() {
-    return jQuery;
-});
-/*requirejs(['../../static/node_modules/jquery/dist/jquery', '../../static/js/app',], function($, app) {
-        window.$(document).ready(function() {
-            window.app.start();
-        });
-    })*/
 
 })()
 

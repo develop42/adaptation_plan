@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'polls',
     'rest_framework',
     'django.contrib.gis',
-    # 'watson',
+    'watson',
     'rest_framework_gis',
 ]
 
@@ -133,7 +133,6 @@ STATIC_URL = '/polls/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     os.path.join(BASE_DIR, "/polls/static/"),
-    #'/home/olga/DatumProjects/django_tert/tert_adaptation_plan/polls/static/',
 ]
 
 
@@ -149,3 +148,5 @@ REST_FRAMEWORK = {
 #     from .settings_instance import *
 # except ObjectDoesNotExist:
 #     pass
+
+TITLE = "Карта Ростова-на-Дону"

@@ -6,7 +6,6 @@ requirejs(['../../static/node_modules/jquery/dist/jquery.min',
             '../node_modules/backbone/backbone',
             '../node_modules/backbone.radio/build/backbone.radio',
             '../node_modules/backbone.marionette/lib/backbone.marionette',
-            'appView',
             'search',
             'init',
             '../../static/node_modules/bootstrap/dist/js/bootstrap',
@@ -21,30 +20,22 @@ function($,
          backbone,
          radio,
          marionette,
-         appView,
          search,
          init,
          bootstrap,
          text,
          ){
-requirejs(['jquery'], function($) {
+	requirejs(['jquery'], function($) {
 
 			window.$(document).ready(function() {
-				var Application = Marionette.Application.extend({
-
-				});
-
+				var Application = Marionette.Application.extend();
 				var myApplication = new Application();
-
                 myApplication.on('start', function() {
                     Backbone.history.start();
-
                 });
-
 				myApplication.start();
-				window.app = myApplication
+				window.app = myApplication;
 			});
-			});
+	});
 
-		 }
-);
+});

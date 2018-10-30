@@ -49,8 +49,3 @@ class Choice(geo_model.Model):
     class Meta:
         verbose_name = 'Ответ'
         verbose_name_plural = 'Ответы'
-
-
-
-# watson.register(Question, fields=("question_text",))
-# watson.register(Choice, fields=("choice_text",))

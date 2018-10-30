@@ -5,8 +5,6 @@ from rest_framework import generics, permissions
 from .serializers import QuestionSerializer, LocationSerializer
 from watson import search as watson
 from .forms import Form
-from django.http import Http404
-
 
 # Create your views here.
 
@@ -14,15 +12,12 @@ def detail(request, question_id):
     question = get_object_or_404(Question, pk = question_id)
     return render(request, 'polls/detail.html', {'question': question})
 
-
 def results(request, question_id):
     response = "You're looking at the results of question %s."
     return HttpResponse(response % question_id)
 
-
 def vote(request, question_id):
     return HttpResponse("You're voting on question %s." % question_id)
-
 
 def index(request):
     latest_question_list = Question.objects.all()
@@ -37,49 +32,34 @@ class QuestionList (generics.ListCreateAPIView):
     ]
 
     def get_queryset(self):
-        queryset = Question.objects.all()
+        queryset = watson.filter(Question, self.request.GET.get('value'))
         return queryset
+
+    def list(self, request, *args, **kwargs):
+        response = super(QuestionList, self).list(request, *args, **kwargs)
+        if len(response.data) == 0:
+            response.data = dict(
+                status = 'error',
+                count = len(response.data),
+                results = []
+            )
+        else:
+            response.data = dict(
+                status = 'success',
+                count = len(response.data),
+                results = response.data
+            )
+        return response
+
 
 
 def map(request):
-    # question = Question.objects.all()
-    form = Form(request.POST)
-    if request.method == 'POST':
-        form = Form(request.POST)
-        if form.is_valid():
-            query = request.POST.get('input')
-            search_results = watson.search(query)
-            return render(request, 'polls/map.html', {'form': form, 'search_results': search_results, 'query': query})
-        else:
-            form = Form()
-    return render(request, 'polls/map.html', {'form': form,})
+    form = Form(request.GET)
+    return render(request, 'polls/map.html', {'form': form})
 
-
-
-def searchModel(request):
-    form = Form(request.POST)
-    if request.method == 'POST':
-        form = Form(request.POST)
-        if form.is_valid():
-            query = request.POST.get('input')
-            search_results = watson.search(query)
-            return render(request, 'polls/search_text.html', {'form': form, 'search_results': search_results, 'query': query})
-        else:
-            form = Form()
-    return render(request, 'polls/search_text.html',{'form': form})
 
 def search(request):
-    form = Form(request.POST)
-    if request.method == 'POST':
-        form = Form(request.POST)
-        if form.is_valid():
-            query = request.POST.get('input')
-            search_results = watson.search(query)
-            return render(request, 'polls/search_text.html',
-                          {'form': form, 'search_results': search_results, 'query': query})
-        else:
-            form = Form()
-    return render(request, 'polls/search.html', {'form': form})
+    return render(request, 'polls/search.html', )
 
 
 class pointGeo(generics.ListCreateAPIView):

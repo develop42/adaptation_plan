@@ -3,10 +3,10 @@ from .models import Question
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
 
 class QuestionSerializer(serializers.ModelSerializer):
-    question_list = Question.objects.all()
     class Meta:
         model = Question
-        fields = ('question_text', 'geoQuest',)
+        fields = ('question_text',)
+
 
 class LocationSerializer(GeoFeatureModelSerializer):
     class Meta:

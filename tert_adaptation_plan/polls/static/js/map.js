@@ -9,9 +9,7 @@ define(['map',
     app.map = new ol.Map({target: 'map'});
     window.map= app.map
 
-    var Question = Backbone.Model.extend({
-            url: '/polls/geopoint/',
-        });
+    var Question = Backbone.Model.extend();
 
     var QuestionList = Backbone.Collection.extend({
         model: Question,
@@ -56,7 +54,6 @@ define(['map',
 		});
 		window.map.addOverlay(popup);
 
-
 //======================================================popup при клике
 
 		window.map.on('click', function(evt) {
@@ -91,9 +88,7 @@ define(['map',
                 $(element).popover('destroy');
                 popup.setPosition(undefined);
             }
-
 		});
-
 
 //=======================================================курсор pointer
 
@@ -129,7 +124,6 @@ define(['map',
     });
     app.map.addLayer(osmLayer);
 
-
     var view = new ol.View({
         center: ol.proj.fromLonLat([39.718705, 47.222531]),
         zoom: 13,
@@ -161,14 +155,5 @@ define(['map',
 		undefinedHTML: 'Пока не доступно',
     });
     app.map.addControl(mousePosition);
-
-
-	/*var link = document.querySelector('link[rel="import"]');
-    var content = link.import;
-    var el = content.querySelector('#list');
-    document.querySelector('#form').appendChild(el);*/
-
-
-
 
 });
