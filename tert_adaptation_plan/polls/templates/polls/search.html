@@ -7,11 +7,18 @@
         <div class="content" id="cont">
             <% if(objects_geo != 0) { %>
                 <% for(var obj in objects_geo) { %>
-                    <li><%= objects_geo[obj].question_text %></li>
+                        <div class="li" id="li">
+                            <%= objects_geo[obj].question_text %>
+                            <%= objects_geo[obj].geoQuest.coordinates %>
+                        </div>
+                        <div class="coord" id="coord">
+                            Координаты: <%= objects_geo[obj].geoQuest.coordinates %>
+                        </div>
                 <% } %>
             <% } else { %>
                 Результаты не найдены
             <% } %>
             
         </div>
+    
 </script>

@@ -16,6 +16,25 @@ define(['search',
 
         var question_list = new QuestionList();
 
+
+        var ListView = Marionette.ItemView.extend({
+			template: $(html).filter('#search_result')[0].outerHTML,
+			el: '#li',
+			events:{
+				"click #li": "show_block"
+			},
+			show_block: function(e){
+				var elem = document.getElementById('coord')
+				if(elem.style.display == "none"){
+					$('#coord').show();
+				} else {
+					$('#coord').hide();
+				}
+			},
+        });
+        
+
+
 		var ResultView = Marionette.LayoutView.extend({
             el: '#list',
 			template: $(html).filter('#search_result')[0].outerHTML,
@@ -28,10 +47,30 @@ define(['search',
 				}
 			},
 			events:{
-				"click a": "close"
+				"click a": "close",
+				"click #li": "show_block"
 			},
 			close: function(e){
-				document.getElementById('list').style.display = "none"
+				$("#list").hide();
+			},
+			show_block: function(e){
+				var elem = document.getElementById('coord')
+				if(elem.style.display == "none"){
+					$('#coord').show();
+				} else {
+					$('#coord').hide();
+				}
+
+				for(var obj=0; obj<this.options.objects_geo.length; obj++ ){
+//				for (var obj in this.options.objects_geo){
+					var view = new ol.View({
+                        center: ol.proj.fromLonLat(
+								this.options.objects_geo[obj].geoQuest.coordinates
+                        ),
+                        zoom: 13,
+                    });
+                    window.map.setView(view);
+                }
 			},
 			onRender: function(){
 				this.showChildView('list', formView);
@@ -56,9 +95,8 @@ define(['search',
 				question_list.on('sync', function(response){
 					var geojsonObjects = response.models[0].attributes.results;
                     _this.getRegion('form').show(new ResultView({objects_geo: geojsonObjects}));
-
                 });
-				document.getElementById('list').style.display = "block";
+				$('#list').show();
 			},
 		});
 		var formView = new FormView();

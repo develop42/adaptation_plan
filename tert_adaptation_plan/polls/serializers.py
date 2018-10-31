@@ -5,7 +5,7 @@ from rest_framework_gis.serializers import GeoFeatureModelSerializer
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
-        fields = ('question_text',)
+        fields = ('question_text', 'geoQuest',)
 
 
 class LocationSerializer(GeoFeatureModelSerializer):

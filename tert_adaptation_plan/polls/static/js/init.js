@@ -15,7 +15,7 @@ requirejs.config({
 		search: 'search',
 		app: 'app',
 		bootstrap: 'node_modules/bootstrap/dist/js/bootstrap',
-		text: 'node_modules/text/text',
+		text: '/polls/static/node_modules/text/text',
     },
 
     shim: {
