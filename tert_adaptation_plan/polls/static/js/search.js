@@ -23,7 +23,7 @@ define(['search',
 			events:{
 				"click #li": "show_block"
 			},
-			show_block: function(e){
+			show_block_div: function(e){
 				var elem = document.getElementById('coord')
 				if(elem.style.display == "none"){
 					$('#coord').show();
@@ -31,8 +31,18 @@ define(['search',
 					$('#coord').hide();
 				}
 			},
+			initialize: function(options){
+				console.log(this.options.objects_geo);
+			},
+			templateHelpers: function(){
+				return{
+					objects_geo: this.options.objects_geo,
+				}
+			},
         });
-        
+        var listView = new ListView();
+		listView.render();
+		$('#search_result').html(listView.$el);
 
 
 		var ResultView = Marionette.LayoutView.extend({
@@ -95,6 +105,7 @@ define(['search',
 				question_list.on('sync', function(response){
 					var geojsonObjects = response.models[0].attributes.results;
                     _this.getRegion('form').show(new ResultView({objects_geo: geojsonObjects}));
+                    _this.getRegion('form').show(new ListView({objects_geo: geojsonObjects}));
                 });
 				$('#list').show();
 			},

@@ -155,6 +155,7 @@ body, html {
 
 .mouse-position {
   top: auto;
+  padding:5px;
   bottom: 0;
   position: absolute;
   border: 1px solid black;
@@ -254,5 +255,4 @@ cursor: pointer;
 
 #list .coord{
 	display: none;
-	color:red;
 }

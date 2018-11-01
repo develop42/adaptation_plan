@@ -4,20 +4,23 @@ from .models import Question
 from rest_framework import generics, permissions
 from .serializers import QuestionSerializer, LocationSerializer
 from watson import search as watson
-from .forms import Form
 
 # Create your views here.
 
+
 def detail(request, question_id):
-    question = get_object_or_404(Question, pk = question_id)
+    question = get_object_or_404(Question, pk=question_id)
     return render(request, 'polls/detail.html', {'question': question})
+
 
 def results(request, question_id):
     response = "You're looking at the results of question %s."
     return HttpResponse(response % question_id)
 
+
 def vote(request, question_id):
     return HttpResponse("You're voting on question %s." % question_id)
+
 
 def index(request):
     latest_question_list = Question.objects.all()
@@ -39,23 +42,21 @@ class QuestionList (generics.ListCreateAPIView):
         response = super(QuestionList, self).list(request, *args, **kwargs)
         if len(response.data) == 0:
             response.data = dict(
-                status = 'error',
-                count = len(response.data),
-                results = []
+                status='error',
+                count=len(response.data),
+                results=[]
             )
         else:
             response.data = dict(
-                status = 'success',
-                count = len(response.data),
-                results = response.data
+                status='success',
+                count=len(response.data),
+                results=response.data
             )
         return response
 
 
-
 def map(request):
-    form = Form(request.GET)
-    return render(request, 'polls/map.html', {'form': form})
+    return render(request, 'polls/map.html', )
 
 
 def search(request):
@@ -67,7 +68,4 @@ class pointGeo(generics.ListCreateAPIView):
     permission_classes = [
         permissions.AllowAny
     ]
-
-    def get_queryset(self):
-        queryset = Question.objects.all()
-        return queryset
+    queryset = Question.objects.all()

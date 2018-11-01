@@ -14,6 +14,4 @@ urlpatterns = [
     path('geopoint/', pointGeo.as_view(), name='point'),
     path('map/static/templates/polls/search.html', views.search, name='search'),
     path('map/search/', QuestionList.as_view(), name='question_list'),
-
-
 ]

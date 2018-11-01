@@ -8,6 +8,7 @@ tert_adaptation_plan/polls/migrations/__pycache__/0004_auto_20180921_1431.cpytho
 tert_adaptation_plan/polls/migrations/__pycache__/__init__.cpython-37.pyc
 tert_adaptation_plan/polls/templatetags/__pycache__/__init__.cpython-37.pyc
 tert_adaptation_plan/polls/templatetags/__pycache__/tags.cpython-37.pyc
+tert_adaptation_plan/polls/migrations/__pycache__
 
 #local settings
 tert_adaptation_plan/tert_adaptation_plan/settings_instance.py

@@ -58,8 +58,8 @@ define(['map',
 
 		window.map.on('click', function(evt) {
 			var feature = window.map.forEachFeatureAtPixel(evt.pixel,
-            function(feature, layer) {
-                return feature;
+                function(feature, layer) {
+                    return feature;
             });
             var element = popup.getElement();
 
