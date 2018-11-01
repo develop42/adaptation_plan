@@ -84,7 +84,7 @@ define(['map',
 					'content':  feature.getProperties().question_text + '<hr> Координаты: ' + hdms
                 });
 	            $(element).popover('show');
-	        }else {
+	        } else {
                 $(element).popover('destroy');
                 popup.setPosition(undefined);
             }

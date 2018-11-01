@@ -20,8 +20,11 @@ define(['search',
         var ListView = Marionette.ItemView.extend({
 			template: $(html).filter('#search_result')[0].outerHTML,
 			el: '#li',
+			regions: {
+				liRegion: '#li',
+			},
 			events:{
-				"click #li": "show_block"
+				"click #li": "show_block_div"
 			},
 			show_block_div: function(e){
 				var elem = document.getElementById('coord')
@@ -30,9 +33,6 @@ define(['search',
 				} else {
 					$('#coord').hide();
 				}
-			},
-			initialize: function(options){
-				console.log(this.options.objects_geo);
 			},
 			templateHelpers: function(){
 				return{
@@ -64,15 +64,16 @@ define(['search',
 				$("#list").hide();
 			},
 			show_block: function(e){
-				var elem = document.getElementById('coord')
+				/*var elem = document.getElementById('coord')
 				if(elem.style.display == "none"){
 					$('#coord').show();
+
 				} else {
 					$('#coord').hide();
-				}
+				}*/
 
-				for(var obj=0; obj<this.options.objects_geo.length; obj++ ){
-//				for (var obj in this.options.objects_geo){
+//				for(var obj=0; obj<this.options.objects_geo.length; obj++ ){
+				for (var obj in this.options.objects_geo){
 					var view = new ol.View({
                         center: ol.proj.fromLonLat(
 								this.options.objects_geo[obj].geoQuest.coordinates
