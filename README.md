@@ -11,5 +11,5 @@ gulp sass
 # Скрипты:
 Файл script.py предназначен для подсчета количества объектов в таблицах Question и Choice
 
-# Команда выравнивания python кода
+# Команда выравнивания python кода по стандарту PEP8
 autopep8 filename.py --in-place

@@ -1,5 +1,5 @@
 #python
-/__pycache__/
+__pycache__/
 
 #local settings
 tert_adaptation_plan/tert_adaptation_plan/settings_instance.py
