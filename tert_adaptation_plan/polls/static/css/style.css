@@ -229,14 +229,41 @@ body, html {
   position: absolute;
   pointer-events: none; }
 
-.content .li{
+.content .li {
   list-style-type: none;
   background-color: rgb(224, 224, 224);
   padding:5px;
   margin-bottom: 5px; }
 
-#li{
+#li {
   cursor: pointer; }
 
-#list .coord{
+#list .coord {
   display: none; }
+
+#change_layers {
+  position:absolute;
+  top: 250px;
+  background-color: white;
+  width: 100px;
+  height: 50px; }
+
+#layers {
+  position:absolute;
+  top: 250px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 7px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 2px 10px 0 rgba(0,0,0,0.2);
+  margin-left: 10px;
+  width: 150px;
+  height: 170px; }
+
+#layers .h1 {
+  background-color: rgba(0, 60, 136, 0.7);
+  border-radius: 7px 7px 0 0;
+  color: white;
+  padding: 5px 10px;
+  padding:5px; }
+
+.no_result {
+  text-align: center; }

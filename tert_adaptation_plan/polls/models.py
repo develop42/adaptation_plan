@@ -17,7 +17,7 @@ class Question(geo_model.Model):
         ('PHYSICS', 'физика'),
     )
     topic = models.CharField(
-        max_length=2,
+        max_length=20,
         choices=TOPIC_CHOICES,
         default='RUSSIAN',
         verbose_name='Тема'

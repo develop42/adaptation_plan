@@ -3,6 +3,7 @@ __pycache__/
 
 #local settings
 tert_adaptation_plan/tert_adaptation_plan/settings_instance.py
+tert_adaptation_plan/polls/migrations/0006_auto_20181126_0707.py
 
 #client libraries
 tert_adaptation_plan/polls/static/node_modules

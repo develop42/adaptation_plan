@@ -2,6 +2,7 @@ define(['map',
         '../node_modules/backbone/backbone',
         '../node_modules/backbone.marionette/lib/backbone.marionette',
         '../../static/node_modules/bootstrap/dist/js/bootstrap',
+        'layers'
     ],
     function(map, backbone, marionette, bootstrap) {
         'use strict';
@@ -117,10 +118,10 @@ define(['map',
         //====================================слои и элементы управления=======================================
 
 
-        var osmLayer = new ol.layer.Tile({
+        /*var osmLayer = new ol.layer.Tile({
             source: new ol.source.OSM()
         });
-        map.addLayer(osmLayer);
+        map.addLayer(osmLayer);*/
 
         var view = new ol.View({
             center: ol.proj.fromLonLat([39.718705, 47.222531]),

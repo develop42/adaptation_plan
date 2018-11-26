@@ -2,7 +2,14 @@
     'use strict';
 
     requirejs.config({
-
+        /*config: {
+            text: {
+                useXhr: function (url) {
+                    url: 'node_modules/text/text'
+                },
+                text: 'node_modules/text/text'
+            }
+        },*/
         baseUrl: 'static',
         paths: {
             jquery: 'node_modules/jquery/dist/jquery.min',
@@ -16,7 +23,8 @@
             search: 'search',
             app: 'app',
             bootstrap: 'node_modules/bootstrap/dist/js/bootstrap',
-            text: 'node_modules/text/text',
+            text: '/polls/static/node_modules/text/text',
+            layers: 'layers'
         },
 
         shim: {

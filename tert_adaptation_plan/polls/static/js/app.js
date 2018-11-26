@@ -10,6 +10,7 @@ requirejs(['../../static/node_modules/jquery/dist/jquery.min',
         'init',
         '../../static/node_modules/bootstrap/dist/js/bootstrap',
         '../node_modules/text/text',
+        'layers',
     ],
 
     function($,
