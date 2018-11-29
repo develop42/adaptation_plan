@@ -1,10 +1,9 @@
 define(['map',
         '../node_modules/backbone/backbone',
         '../node_modules/backbone.marionette/lib/backbone.marionette',
-        '../../static/node_modules/bootstrap/dist/js/bootstrap',
         'layers'
     ],
-    function(map, backbone, marionette, bootstrap) {
+    function(map, backbone, marionette) {
         'use strict';
 
         map = new ol.Map({
@@ -117,12 +116,6 @@ define(['map',
 
         //====================================слои и элементы управления=======================================
 
-
-        /*var osmLayer = new ol.layer.Tile({
-            source: new ol.source.OSM()
-        });
-        map.addLayer(osmLayer);*/
-
         var view = new ol.View({
             center: ol.proj.fromLonLat([39.718705, 47.222531]),
             zoom: 13,
@@ -146,6 +139,9 @@ define(['map',
             source: new ol.source.OSM()
         });
 
+        var layerSwitcher = new ol.control.layersAdd(map);
+        map.addControl(layerSwitcher)
+
         var mousePosition = new ol.control.MousePosition({
             className: 'mouse-position',
             target: 'map',
@@ -155,4 +151,5 @@ define(['map',
         });
         map.addControl(mousePosition);
 
+        return map;
     });
