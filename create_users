@@ -1,0 +1,13 @@
+# Создание суперпользователя
+python manage.py createsuperuser
+Имя пользователя: administrator
+Адрес электронной почты: administrator@mail.ru
+Password:
+Password (again):
+Superuser created successfully.
+
+# Создание обычного пользователя
+python manage.py shell
+from django.contrib.auth.models import User
+user = User.objects.create_use('user_name', 'user@mail.ru', '')
+user.save()

@@ -1,7 +1,8 @@
 define(['map',
         '../node_modules/backbone/backbone',
         '../node_modules/backbone.marionette/lib/backbone.marionette',
-        'layers'
+        'layers',
+        'screen_map'
     ],
     function(map, backbone, marionette) {
         'use strict';
@@ -140,7 +141,10 @@ define(['map',
         });
 
         var layerSwitcher = new ol.control.layersAdd(map);
-        map.addControl(layerSwitcher)
+        map.addControl(layerSwitcher);
+
+        var screenMap = new ol.control.screenMap(map);
+        map.addControl(screenMap);
 
         var mousePosition = new ol.control.MousePosition({
             className: 'mouse-position',

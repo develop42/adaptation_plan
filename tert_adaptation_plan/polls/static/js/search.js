@@ -39,10 +39,10 @@ define(['../node_modules/backbone/backbone',
             },
             show_block: function(e) {
                 var elem = this.ui.coord;
-                if (elem[0].style.display == "none") {
-                    elem.show();
-                } else {
+                if (elem[0].style.display == "block") {
                     elem.hide();
+                } else {
+                    elem.show();
                 }
                 for (var obj = 0; obj < this.options.objects_geo.length; obj++) {
                     //				for (var obj in this.options.objects_geo){

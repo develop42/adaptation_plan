@@ -75,16 +75,32 @@
         };
 
         function createLayers() {
-            var layerList = document.getElementById('layers');
-            var button = document.getElementById('buttonLayers');
-            button.title = 'Картографические основы';
+            var layerList = document.createElement('div');
+            layerList.className = 'layers';
+            document.body.appendChild(layerList);
+
+            var head = document.createElement('div');
+            head.className = 'h1';
+            head.innerHTML = 'Картографическая основа';
+            layerList.appendChild(head);
+
+            var button = document.createElement('div');
+            button.className = 'buttonLayers';
+
+            var layers_map = document.getElementById('map');
+            layers_map.insertBefore(button, layers_map.children[0]);
+
+			var btn = document.createElement('button');
+			button.appendChild(btn);
+
+			button.title = 'Картографические основы';
             button.onclick = function(e) {
                 e = e || window.event;
                 e.preventDefault();
-                if (layerList.style.display == "none") {
-                    $('#layers').show();
+                if (layerList.style.display == "block") {
+                    layerList.style.display = "none"
                 } else {
-                    $('#layers').hide()
+                    layerList.style.display = "block"
                 }
             }
             _this.map.getLayers().forEach(function(layer) {

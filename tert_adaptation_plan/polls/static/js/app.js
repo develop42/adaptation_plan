@@ -9,7 +9,8 @@ requirejs(['../../static/node_modules/jquery/dist/jquery.min',
         'search',
         'init',
         '../node_modules/bootstrap/dist/js/bootstrap',
-        '../node_modules/text/text'
+        '../node_modules/text/text',
+        'plugins/layers'
     ],
 
     function($,
