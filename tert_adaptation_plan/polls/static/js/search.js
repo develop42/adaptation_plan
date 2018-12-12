@@ -1,8 +1,8 @@
 define(['../node_modules/backbone/backbone',
         '../node_modules/backbone.marionette/lib/backbone.marionette',
         'map',
-//        'text!../../templates/polls/search.html',
-        'text!search.html',
+        'text!/templates/polls/search.html',
+//        'text!search.html',
         '../libs/ol/ol-debug',
     ],
     function(backbone, marionette, map, html, ol) {
@@ -70,15 +70,13 @@ define(['../node_modules/backbone/backbone',
             },
             submit: function(event) {
                 event.preventDefault();
-                var _data = $("input[name='input']").val();
                 question_list.fetch({
-                    url: '/polls/map/search/?value=' + _data
+                    url: '/search/?value=' + $("input[name='input']").val()
                 });
                 var _this = this;
                 question_list.on('sync', function(response) {
-                    var geojsonObjects = response.models[0].attributes.results;
                     _this.getRegion('form').show(new ResultView({
-                        objects_geo: geojsonObjects
+                        objects_geo: response.models[0].attributes.results
                     }));
                 });
                 $('#list').show();

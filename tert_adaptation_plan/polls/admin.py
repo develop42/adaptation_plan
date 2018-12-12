@@ -26,10 +26,13 @@ admin.site.register(Choice, ChoiceAdmin)
 
 admin.site.unregister(Group)
 
+
 class UserAdmin(admin.ModelAdmin):
     exclude = ('groups', 'user_permissions')
+
     class Meta:
         model: User
+
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)

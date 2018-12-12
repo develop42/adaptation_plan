@@ -29,7 +29,6 @@
 	        }, false);
 	      } else {
 	        var info = document.getElementById('no-download');
-
 	        info.style.display = '';
 	      }
 	      ol.control.Control.call(this, {

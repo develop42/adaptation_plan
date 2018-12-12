@@ -16,7 +16,7 @@ define(['map',
 
         var QuestionList = Backbone.Collection.extend({
             model: Question,
-            url: '/polls/geopoint/',
+            url: '/geopoint/',
         });
         //========================================== Вывод точек на карту===========================================
 
